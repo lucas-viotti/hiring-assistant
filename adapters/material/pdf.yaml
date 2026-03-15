@@ -1,0 +1,10 @@
+name: "pdf"
+match:
+  url_patterns: []
+  file_extensions:
+    - ".pdf"
+mcp: "native"
+cli: ""
+tools: []
+output: "markdown + slides"
+instructions: "pdf.md"

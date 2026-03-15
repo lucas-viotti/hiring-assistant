@@ -1,0 +1,81 @@
+# Function Configuration Scaffold
+# Copy this file to ~/.hiring-assistant/functions/{function}/config.yaml
+# Fill in all placeholder values — see core/schemas/function-config-schema.md for full docs
+
+# ─────────────────────────────────────────
+# Function identity
+# ─────────────────────────────────────────
+function: "{function-id}"                 # e.g., "product-ops" — lowercase, hyphenated
+name: "{Function Display Name}"           # e.g., "Product Operations"
+status: "draft"                           # Change to "active" when setup is complete
+guidelines_repo: "hiring-guidelines-{function-id}"  # Your org's private guidelines repo name
+
+# ─────────────────────────────────────────
+# Interview types — add one entry per interview type
+# ─────────────────────────────────────────
+interview_types:
+
+  # ---- BEHAVIORAL INTERVIEW (remove if not applicable) ----
+  - id: "behavioral"
+    name: "Behavioral Interview"
+    levels:
+      - IC4
+      - IC5
+      - IC6
+      - IC7
+      # Add M2, M3 if your function has manager-track interviews
+    async: false                          # true if there's no live recording
+    required_inputs:
+      - type: transcript
+        formats: [md, txt]
+    optional_inputs:
+      - type: notes
+        formats: [md, txt]
+    competencies:
+      # List the competencies from your behavioral guidelines document
+      - id: "{competency-1-id}"           # e.g., "stakeholder-management"
+        name: "{Competency 1 Name}"       # e.g., "Stakeholder Management"
+      - id: "{competency-2-id}"
+        name: "{Competency 2 Name}"
+      # Add more...
+    guidelines_path: "behavioral/"        # Relative path within your guidelines repo
+
+  # ---- BUSINESS CASE INTERVIEW (remove if not applicable) ----
+  - id: "business-case"
+    name: "Business Case"
+    levels:
+      - IC4
+      - IC5
+      - IC6
+      - IC7
+    async: true                           # Business cases typically have no live recording
+    cases:
+      # Add one entry per case variant your function uses
+      - id: "{case-id}"                   # e.g., "strategic-analysis"
+        name: "{Case Display Name}"       # e.g., "Strategic Analysis Case"
+        active: true
+        guidelines_path: "business-case/{case-id}/"
+        candidate_materials: []           # Filenames given to the candidate (optional)
+      # - id: "{case-id-2}"
+      #   name: "{Case 2 Name}"
+      #   active: false
+    required_inputs:
+      - type: presentation
+        formats: [pdf, pptx, key]
+    optional_inputs:
+      - type: notes
+        formats: [md, txt]
+      - type: transcript
+        formats: [md, txt]
+    competencies:
+      - id: "{competency-1-id}"
+        name: "{Competency 1 Name}"
+      - id: "{competency-2-id}"
+        name: "{Competency 2 Name}"
+    guidelines_path: "business-case/"
+
+# ─────────────────────────────────────────
+# ATS integration
+# ─────────────────────────────────────────
+greenhouse:
+  scorecard_prefix: "{function-id}"       # Prefix for ATS scorecard submissions

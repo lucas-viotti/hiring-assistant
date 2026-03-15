@@ -1,0 +1,10 @@
+# Candidate PII — runtime data lives in ~/.hiring-assistant/candidates/ only
+**/candidates/
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp

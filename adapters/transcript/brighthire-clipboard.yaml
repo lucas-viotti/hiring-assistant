@@ -1,0 +1,12 @@
+name: "brighthire-clipboard"
+description: "Paste BrightHire transcript from clipboard"
+platform: "BrightHire"
+method: "clipboard"
+clipboard_prompt: |
+  Please paste your BrightHire transcript:
+  1. Open BrightHire (browser extension or brighthire.ai)
+  2. Find the interview for {candidate_name}
+  3. Click "Transcript" → Select All → Copy
+  4. Paste below
+instructions: "brighthire-clipboard.md"
+output: "markdown"

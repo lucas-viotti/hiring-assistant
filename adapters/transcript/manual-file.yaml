@@ -1,0 +1,13 @@
+name: "manual-file"
+description: "Provide transcript as a local file (.md or .txt)"
+platform: "Any (manual)"
+method: "file"
+file_extensions:
+  - ".md"
+  - ".txt"
+file_prompt: |
+  Please provide the path to your transcript file.
+  Supported formats: .md, .txt
+  Example: ~/Downloads/interview-transcript.md
+instructions: "manual-file.md"
+output: "markdown"

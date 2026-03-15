@@ -1,0 +1,85 @@
+# Org Configuration Template
+# Copy to ~/.hiring-assistant/org-config.yaml and fill in your org's details.
+# See the comments for what each field controls.
+
+organization:
+  name: "{Your Organization Name}"
+
+  github:
+    org: "{your-github-org}"
+    access_request:
+      method: "slack-bot"      # "slack-bot" | "jira" | "email" | "manual"
+      bot_id: ""               # Slack bot ID (if method: "slack-bot")
+      bot_name: ""             # Slack bot display name
+      prompts:
+        add_to_org: "I would like to add {username} to the {org} GitHub organization."
+        add_to_group: "I would like to access the {group_name} GitHub team/repository."
+
+  functions:
+    source: "repo"             # "repo" | "bundled-with-guidelines"
+    repo: ""                   # GitHub repo name containing function configs (if source: "repo")
+    path: "functions/"         # Path within the repo
+    available: []              # Optional explicit list of function IDs; if empty, all active functions are offered
+
+  guidelines:
+    contact: ""                # Who to contact for guidelines access (e.g., "@hiring-lead")
+    contact_method: "slack"    # "slack" | "email" | "jira"
+    repo_pattern: "hiring-guidelines-{function}"  # Pattern for private guidelines repos
+    message_template: "Hi {contact}, I need access to the {function} hiring guidelines. My GitHub username is {username}."
+
+  integrations:
+    ats:
+      default_adapter: "greenhouse"   # ATS adapter name from adapters/ats/
+      overrides:
+        domain: ""                    # Your ATS domain (e.g., "yourcompany.greenhouse.io")
+    transcript:
+      default_adapter: "brighthire-clipboard"   # Transcript adapter name from adapters/transcript/
+      supported_adapters:
+        - "brighthire-clipboard"
+        - "manual-file"
+
+  templates:
+    override_dir: ""           # Path to org-wide template overrides (optional)
+                               # Templates here take precedence over function defaults
+
+  transcript_enrichment:
+    enabled_steps:
+      - "speaker-normalization"   # Enable/disable enrichment steps
+    custom_steps: []              # Custom steps from transcript-enrichment/
+
+  documentation:
+    onboarding_guide: ""       # Link to your onboarding guide (shown in /hiring-help)
+    hiring_assistant_page: ""  # Link to your Confluence/wiki page about this plugin
+
+  data_privacy:
+    # --- Transcript persistence ---
+    # Options:
+    #   "always"                  — keep transcript file indefinitely
+    #   "delete_after_assessment" — delete after assessment is saved (recommended for most orgs)
+    #   "never"                   — never write transcript to disk (in-memory only)
+    # Note: BrightHire retains the source transcript regardless of this setting.
+    transcript_persist: "always"
+
+    # --- Candidate data retention ---
+    # How many days to keep candidate files in ~/.hiring-assistant/candidates/.
+    # After this period, /hiring-admin clean will flag them for deletion.
+    # Set to 0 to disable automatic cleanup prompts.
+    #
+    # Regulatory baselines:
+    #   BR (LGPD): 365 days (1 year — covers CLT prescription period for discrimination claims)
+    #   EU (GDPR): 180–365 days for rejected candidates
+    #   US:        no statutory minimum; 365–730 days is common practice
+    retention_days: 365
+
+    # --- Cohort storage backend ---
+    # Options:
+    #   "local"      — files at ~/.hiring-assistant/cohort/ (private to this machine)
+    #   "confluence" — aggregate rows posted to a Confluence page (Phase 3)
+    #   "s3"         — encrypted S3 bucket (Phase 3, requires s3 adapter config)
+    #   "disabled"   — do not track cohort at all
+    cohort_storage: "local"
+
+    # --- Cohort pseudonymization ---
+    # If true, cohort rows use a candidate ID (hash of name + date) instead of
+    # the candidate's full name. Reduces long-lived PII in calibration files.
+    cohort_pseudonymize: false

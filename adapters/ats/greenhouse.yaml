@@ -1,0 +1,38 @@
+name: "greenhouse"
+display_name: "Greenhouse"
+api:
+  base_url_pattern: "https://{domain}/v1"
+  auth_method: "api_key"
+  auth_env_var: "GREENHOUSE_API_KEY"
+  auth_request_instructions: |
+    To get a Greenhouse API key:
+    1. Contact your People & Culture / Recruiting team
+    2. Request an API key with read access to Applications and Scorecards
+    3. Set it in your shell: export GREENHOUSE_API_KEY="your-key"
+    4. Add it to ~/.zshrc or ~/.bashrc for persistence
+url_patterns:
+  candidate: "app\\.greenhouse\\.io/applications/(\\d+)"
+discovery:
+  email_search_query: "from:greenhouse subject:interview reminder"
+  calendar_url_pattern: "app\\.greenhouse\\.io/applications/(\\d+)"
+attachments:
+  endpoint: "/applications/{application_id}/attachments"
+  download_types:
+    - "resume"
+    - "cover_letter"
+    - "take_home_test"
+    - "offer_letter"
+  skip_types:
+    - "other"
+  auth_header: "Basic {base64(api_key:)}"
+scorecard:
+  can_post: false            # Phase 2: POST endpoint to be enabled when ATS team approves
+  read_endpoint: "/applications/{application_id}/scorecards"
+  read_fields:
+    interviewer: "interviewer.name"
+    stage: "interview_step.name"
+    ratings: "ratings"
+    recommendation: "overall_recommendation"
+    submitted_at: "submitted_at"
+output_mapping:
+  instructions: "greenhouse-output.md"
