@@ -19,9 +19,9 @@ After each interview, run `/hiring-evaluate` and get a complete assessment in mi
 |---------|---------|
 | `/hiring-setup` | First-time onboarding (detects your function, configures integrations) |
 | `/hiring-evaluate` | Post-interview assessment generation |
-| `/hiring-prepare` | Pre-interview briefing from candidate materials *(Phase 2)* |
-| `/hiring-debrief` | Cross-stage debrief synthesis for bar raisers *(Phase 2)* |
-| `/hiring-admin` | Function setup, validation, sync, backtest *(Phase 3)* |
+| `/hiring-prepare` | Pre-interview briefing from candidate materials |
+| `/hiring-debrief` | Cross-stage debrief synthesis for bar raisers |
+| `/hiring-admin` | Function setup, validation, sync, backtest |
 | `/hiring-help` | Show commands, config status, upcoming interviews |
 
 ---
