@@ -82,6 +82,122 @@ Store the confirmed list as `detected_functions`.
 
 ---
 
+## Step 2b — Bootstrap Function Directories
+
+For each function in `detected_functions`, check if the function config already exists:
+
+```
+~/.hiring-assistant/functions/{function}/config.yaml
+```
+
+**If it already exists:** Skip — show `✓ {function} — config already exists`.
+
+**If it does NOT exist:** Run the interactive function setup below.
+
+### Interactive function config creation
+
+Show:
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Setting up: {function}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+I need a few details to configure this function. You can always edit
+the config later at ~/.hiring-assistant/functions/{function}/config.yaml
+```
+
+**Q1 — Display name:**
+```
+Function display name (e.g. "Product Operations"):
+```
+
+**Q2 — Interview types:**
+```
+Which interview types does this function use?
+
+[1] Behavioral only
+[2] Business case only
+[3] Both behavioral and business case
+```
+
+**Q3 — Levels:**
+```
+Which levels do you interview for? (comma-separated, e.g. IC4,IC5,IC6,IC7):
+```
+
+**Q4 — Competencies (behavioral):** *(only if behavioral selected)*
+```
+List the behavioral competencies evaluated in this function.
+Enter one per line, or type "skip" to fill in later.
+
+Examples: Stakeholder Management, Problem Solving, Fast Learner
+
+Competency 1:
+Competency 2:
+...
+(empty line to finish)
+```
+
+**Q5 — Cases (business case):** *(only if business case selected)*
+```
+What is the name of the current business case?
+(e.g. "Strategic Analysis", "Bills & Payments")
+
+Case name:
+```
+
+**Q6 — Competencies (business case):** *(only if business case selected)*
+```
+List the business case competencies evaluated in this function.
+Enter one per line, or type "skip" to fill in later.
+
+Competency 1:
+...
+(empty line to finish)
+```
+
+### Create the function directory
+
+1. Create directories:
+   ```
+   ~/.hiring-assistant/functions/{function}/
+   ~/.hiring-assistant/functions/{function}/templates/
+   ~/.hiring-assistant/functions/{function}/examples/
+   ```
+
+2. Read the scaffold template from `{plugin-dir}/templates/function/config.yaml`
+
+3. Fill in the collected values:
+   - `function` → function ID
+   - `name` → display name from Q1
+   - `status` → `"active"` (if competencies were provided) or `"draft"` (if skipped)
+   - `interview_types` → based on Q2 selection
+   - `levels` → from Q3
+   - `competencies` → from Q4/Q6 (generate IDs by lowercasing and hyphenating)
+   - `cases` → from Q5 (generate ID by lowercasing and hyphenating)
+
+4. Write the filled config to `~/.hiring-assistant/functions/{function}/config.yaml`
+
+5. Copy default assessment templates from `{plugin-dir}/templates/function/templates/` to `~/.hiring-assistant/functions/{function}/templates/`
+
+Show:
+```
+✓ Created function config: ~/.hiring-assistant/functions/{function}/config.yaml
+  Status: {active | draft — fill in competencies to activate}
+  Interview types: {behavioral, business-case}
+  Levels: {IC4, IC5, IC6, IC7}
+  Competencies: {N} configured {or "0 — fill in later to activate"}
+```
+
+If status is "draft":
+```
+⚠ Function is in draft status because competencies were skipped.
+  Edit ~/.hiring-assistant/functions/{function}/config.yaml to add them,
+  then change status to "active".
+```
+
+---
+
 ## Step 3 — Validate GitHub + Guidelines Access
 
 ### Step 3a — Check GitHub CLI
@@ -153,6 +269,19 @@ Guidelines access:
   ✓ product-ops — repo accessible
   ✗ bco — repo not found or no access
 ```
+
+### Step 3c — Clone accessible guidelines
+
+For each function where the repo is accessible:
+
+1. Check if `~/.hiring-assistant/guidelines/{function}/` already exists and is a git repo
+   - If yes: run `git -C ~/.hiring-assistant/guidelines/{function}/ pull`
+   - If no: run `git clone {org}/{resolved-repo-name} ~/.hiring-assistant/guidelines/{function}/`
+
+2. Show:
+   ```
+   ✓ product-ops guidelines cloned to ~/.hiring-assistant/guidelines/product-ops/
+   ```
 
 For any function with missing access, show the request instructions from org-config:
 ```

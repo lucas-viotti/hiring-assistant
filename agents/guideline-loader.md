@@ -34,7 +34,21 @@ Validate against `core/schemas/function-config-schema.md`:
 - For business case: at least one case with `active: true`
 
 If file is missing:
-→ HARD STOP: "Function config not found at `~/.hiring-assistant/functions/{function}/config.yaml`. Run /hiring-setup to configure this function."
+→ Show:
+```
+⚠️ Function "{function}" is not configured yet.
+
+Each function needs:
+  1. A config.yaml with interview types, levels, and competencies
+  2. Private guidelines repos cloned to ~/.hiring-assistant/guidelines/{function}/
+  3. Assessment templates under ~/.hiring-assistant/functions/{function}/templates/
+
+Run /hiring-setup to create this function interactively, or see the
+"Adding New Functions" section in the plugin README.
+```
+→ Ask: "Run /hiring-setup now? [Yes / No]"
+→ If Yes: trigger `/hiring-setup` and stop the current evaluation
+→ If No: STOP
 
 If status is "draft":
 → HARD STOP: "The {function} function is in draft status and not yet ready for evaluation. Contact your hiring lead."
