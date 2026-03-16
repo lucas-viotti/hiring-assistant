@@ -26,7 +26,7 @@ attachments:
     - "other"
   auth_header: "Basic {base64(api_key:)}"
 scorecard:
-  can_post: false            # Phase 2: POST endpoint to be enabled when ATS team approves
+  can_post: false            # Not yet supported — enable when ATS team approves POST access
   read_endpoint: "/applications/{application_id}/scorecards"
   read_fields:
     interviewer: "interviewer.name"

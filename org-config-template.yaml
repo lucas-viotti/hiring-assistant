@@ -74,8 +74,8 @@ organization:
     # --- Cohort storage backend ---
     # Options:
     #   "local"      — files at ~/.hiring-assistant/cohort/ (private to this machine)
-    #   "confluence" — aggregate rows posted to a Confluence page (Phase 3)
-    #   "s3"         — encrypted S3 bucket (Phase 3, requires s3 adapter config)
+    #   "confluence" — aggregate rows posted to a Confluence page (not yet supported)
+    #   "s3"         — encrypted S3 bucket (not yet supported, requires s3 adapter config)
     #   "disabled"   — do not track cohort at all
     cohort_storage: "local"
 

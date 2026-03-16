@@ -59,7 +59,7 @@ To update to the latest guidelines:
 cd ~/.hiring-assistant/guidelines/{function} && git pull
 ```
 
-Or use the sync command (Phase 3):
+Or use the sync command:
 ```
 /hiring-admin sync
 ```

@@ -81,7 +81,7 @@ No other phrasing is accepted. No "Maybe", "Leaning Yes", "Borderline".
 
 ---
 
-## Scorecard POST (Phase 2)
+## Scorecard POST (not yet supported)
 
 When `can_post: true` is enabled and the user confirms, submit via:
 ```

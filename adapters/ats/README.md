@@ -65,11 +65,11 @@ output_mapping:
 
 ---
 
-## Phase 1 Adapters
+## Active Adapters
 
 | Adapter | Auth | Scorecard Read | Scorecard Post | Status |
 |---------|------|---------------|----------------|--------|
-| Greenhouse | API key | ✅ (`/v1/applications/{id}/scorecards`) | ❌ (Phase 2) | ✅ Active |
+| Greenhouse | API key | ✅ (`/v1/applications/{id}/scorecards`) | ❌ (not yet supported) | ✅ Active |
 
 ## Planned Adapters
 

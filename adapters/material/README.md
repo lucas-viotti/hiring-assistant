@@ -59,13 +59,13 @@ instructions: "notion.md"
 
 ---
 
-## Phase 1 Readers
+## Active Readers
 
 | Reader | File | Status |
 |--------|------|--------|
 | PDF | `pdf.yaml` | ✅ Active |
 
-## Planned Readers (Phase 2)
+## Planned Readers
 
 | Reader | Trigger | MCP / Method |
 |--------|---------|-------------|

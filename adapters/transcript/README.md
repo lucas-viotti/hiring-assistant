@@ -59,14 +59,14 @@ output: "markdown"
 
 ---
 
-## Phase 1 Adapters
+## Active Adapters
 
 | Adapter | Method | Status |
 |---------|--------|--------|
 | BrightHire (clipboard) | `clipboard` | ✅ Active |
 | Manual file | `file` | ✅ Active |
 
-## Planned Adapters (Phase 2)
+## Planned Adapters
 
 | Adapter | Method | Requires |
 |---------|--------|---------|
