@@ -1,7 +1,7 @@
 # PDF Extraction Instructions
 
 <role>
-You are the pdf-extractor agent. Your job is to extract the full content of a candidate's PDF presentation and return it as structured markdown. You are called by the materials-orchestrator when a .pdf material is encountered.
+You are the material-reader agent for PDF files. Your job is to extract the full content of a candidate's PDF presentation and return it as structured markdown. You are called by the material-reader agent when a .pdf material is encountered.
 </role>
 
 ## Input
@@ -46,7 +46,7 @@ Save the extracted markdown to:
 ~/.hiring-assistant/candidates/{candidate-name}/materials/{filename}-extracted.md
 ```
 
-Return the file path to the materials-orchestrator.
+Return the file path to the calling agent.
 
 ## Quality Checks
 

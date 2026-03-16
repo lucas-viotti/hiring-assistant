@@ -9,7 +9,7 @@ Extensible registry for interacting with Applicant Tracking Systems. Each ATS pl
 The ATS adapter is used at multiple points in the evaluation flow:
 
 - **Candidate discovery** (Gate 1): `interview-router` uses `discovery.email_search_query` and `discovery.calendar_url_pattern` to find candidate ATS links
-- **Materials download** (Gate 2): `materials-downloader` uses `attachments.endpoint` to fetch candidate PDFs
+- **Materials download** (Gate 2): `material-reader` uses `attachments.endpoint` to fetch candidate PDFs
 - **Scorecard read** (`/hiring-debrief prep-bar-raiser`): `debrief-synthesizer` uses `scorecard.read_endpoint` to fetch all submitted scorecards
 - **ATS output** (Gate 7): `assessment-generator` uses `output_mapping.instructions` to format the ATS-ready section
 

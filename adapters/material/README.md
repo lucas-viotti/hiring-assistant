@@ -6,7 +6,7 @@ Extensible registry for extracting content from candidate materials. Each file t
 
 ## How It Works
 
-When `/hiring-evaluate` or `/hiring-prepare` encounters candidate materials, the `materials-orchestrator` agent:
+When `/hiring-evaluate` or `/hiring-prepare` encounters candidate materials, the `material-reader` agent:
 
 1. Reads all `.yaml` files in this directory
 2. Matches each material file/URL against `match.url_patterns` and `match.file_extensions`
@@ -29,7 +29,7 @@ mcp: ""                     # Dispatch method — one of:
                             #   MCP server    → Name of MCP server (e.g., "google-workspace")
                             #   "agent"       → Spawn a subagent (requires `agent` field)
                             #   "cli"         → Run a shell command (requires `cli` field)
-agent: ""                   # Subagent name, if mcp: "agent" (e.g., "pdf-extractor")
+agent: ""                   # Subagent name, if mcp: "agent"
 cli: ""                     # Command template, if mcp: "cli" (e.g., "python3 {plugin-dir}/scripts/extract-pdf.py {file}")
 tools: []                   # MCP tools used (for documentation; helps orchestrator verify availability)
 output: ""                  # Output format: "markdown" | "markdown + images" | "text"
