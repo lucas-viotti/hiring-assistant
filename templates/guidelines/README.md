@@ -10,12 +10,20 @@ This document defines the expected structure for guidelines repositories. Each j
 {guidelines-repo}/
 ├── behavioral/
 │   └── {Function} - Behaviour Evaluation Guide.md    # Required for behavioral interviews
-└── business-case/
-    └── {case-name}/                                   # One subfolder per case variant
-        ├── evaluation-guide.md                        # Required: how to evaluate the case
-        └── candidate-materials/                       # Optional: files given to candidates
-            └── {Case Material}.pdf
+├── business-case/
+│   └── {case-name}/                                   # One subfolder per case variant
+│       ├── evaluation-guide.md                        # Required: how to evaluate the case
+│       └── candidate-materials/                       # Optional: files given to candidates
+│           └── {Case Material}.pdf
+├── technical/                                         # Optional: coding / technical interviews
+│   └── {Function} - Technical Evaluation Guide.md
+├── system-design/                                     # Optional: architecture / design interviews
+│   └── {Function} - System Design Evaluation Guide.md
+└── portfolio/                                         # Optional: portfolio / work sample reviews
+    └── {Function} - Portfolio Evaluation Guide.md
 ```
+
+Not every function uses every interview type. Include only the directories that match your function's `config.yaml` interview types.
 
 ---
 
@@ -37,6 +45,27 @@ Every guidelines document must satisfy the schema defined in `core/schemas/guide
 - **Signals**: Green and red flags
 - **Must-identify insights**: Key findings the candidate should discover, with importance ratings (critical / important / nice-to-have)
 - **Probing questions**: Questions to ask if the candidate misses key insights
+
+### For Technical / Coding Interviews
+
+- **Competencies section**: Technical skills being evaluated (e.g., problem decomposition, code quality, algorithm choice, testing approach)
+- **Level bars**: Expectations per level (what distinguishes an IC4 solution from an IC7)
+- **Signals**: Green flags (clean abstractions, considers edge cases, tests first) and red flags (brute force without optimization, no error handling)
+- **Evaluation rubric**: How to score code quality, correctness, efficiency, and communication
+
+### For System Design Interviews
+
+- **Competencies section**: Design skills being evaluated (e.g., scalability reasoning, trade-off analysis, component decomposition, data modeling)
+- **Level bars**: Expectations per level (IC5 may scope a single service; IC7 should reason about cross-system interactions)
+- **Signals**: Green flags (drives clarifying questions, quantifies constraints, considers failure modes) and red flags (jumps to solution without requirements, ignores non-functional requirements)
+- **Evaluation rubric**: How to score breadth vs. depth, trade-off articulation, and communication
+
+### For Portfolio / Work Sample Reviews
+
+- **Competencies section**: What to evaluate in the candidate's past work (e.g., impact framing, technical depth, design quality, stakeholder management)
+- **Level bars**: Expectations per level for quality and scope of work presented
+- **Signals**: Green flags (quantified impact, clear ownership narrative, lessons from failures) and red flags (vague contributions, no measurable outcomes, only team-level results)
+- **Evaluation rubric**: How to score impact, complexity, and storytelling
 
 ---
 
