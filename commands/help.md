@@ -115,10 +115,6 @@ Show:
 /hiring-help
   Show this screen.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Coming in Phase 2
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 /hiring-prepare    — Pre-interview briefing for any candidate
 /hiring-debrief    — Debrief synthesis, prep, and decision support
 /hiring-admin      — Add functions, run backtests, validate plugin
