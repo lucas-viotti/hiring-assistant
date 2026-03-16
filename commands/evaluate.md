@@ -182,7 +182,7 @@ Cohort: Updated
 
 Next steps:
 - Open Greenhouse and paste Part 2 into your scorecard
-- Run /hiring-debrief prep-interviewer before the debrief meeting
+- Run /hiring-debrief --mode interviewer before the debrief meeting
 ```
 
 ---

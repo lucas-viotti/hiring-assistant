@@ -1,6 +1,6 @@
 ---
 name: hiring-debrief
-description: Cross-stage debrief synthesis — aggregates all assessments for a candidate, surfaces rating disagreements between interviewers, and produces either a structured debrief agenda (prep-interviewer mode) or a final consolidated verdict (synthesis mode).
+description: Debrief preparation for interviewers and bar raisers — interviewer mode prepares your own talking points from your assessment; bar-raiser mode loads all interviewers' scorecards (from Greenhouse API, TA's PDF export, or shared files), builds a cross-interviewer comparison matrix, surfaces rating disagreements and level calibration issues, and generates a structured debrief agenda. Post-meeting, records the consolidated verdict.
 triggers:
   - /hiring-debrief
 ---

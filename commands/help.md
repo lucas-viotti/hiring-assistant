@@ -115,8 +115,11 @@ Show:
 /hiring-help
   Show this screen.
 
-/hiring-prepare    — Pre-interview briefing for any candidate
-/hiring-debrief    — Debrief synthesis, prep, and decision support
+/hiring-prepare     — Pre-interview briefing for any candidate
+/hiring-debrief    — Debrief prep for interviewers and bar raisers
+  --mode interviewer  Prepare your talking points from your own assessments
+  --mode bar-raiser   Load all scorecards, build cross-interviewer comparison
+  --verdict           Record consolidated verdict after the debrief meeting
 /hiring-admin      — Add functions, run backtests, validate plugin
 ```
 
