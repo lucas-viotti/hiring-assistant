@@ -148,9 +148,18 @@ Receive: `<assessment_result>` with status, path, recommendation, confidence.
 **If `--auto` flag is NOT set:**
 Show the full assessment to the user and ask:
 ```
-Assessment complete. Review above and confirm:
+Draft assessment complete. This is YOUR evaluation — review it
+before anything goes to Greenhouse.
+
+- Read Part 1 (detailed analysis). Does the reasoning match
+  your impression from the interview?
+- Read Part 2 (Greenhouse draft). Would you sign your name
+  under every rating and claim?
+- Edit anything you disagree with. Add context the tool missed.
+
+When you are satisfied with the assessment:
 [Confirm] — save to cohort and finish
-[Revise] — go back and update
+[Revise {section}] — go back and update a specific section
 ```
 
 Wait for confirmation.
@@ -181,8 +190,10 @@ Cohort: Updated
 {Greenhouse link if available}
 
 Next steps:
-- Open Greenhouse and paste Part 2 into your scorecard
+- Open Greenhouse and paste your reviewed Part 2 into your scorecard
 - Run /hiring-debrief --mode interviewer before the debrief meeting
+
+Remember: you reviewed and approved this assessment. It carries your name.
 ```
 
 ---

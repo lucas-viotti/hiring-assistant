@@ -74,7 +74,7 @@ No other phrasing is accepted. No "Maybe", "Leaning Yes", "Borderline".
 
 ## Formatting Rules
 
-1. **Copy-paste ready**: The Greenhouse section must be copy-pasteable directly into the scorecard without editing
+1. **Paste-ready after review**: The Greenhouse section must be formatted so the interviewer can paste it directly into the scorecard after reviewing and editing. The interviewer may change any rating, add context, or override the recommendation before pasting.
 2. **No Part 1 content**: Do not include the detailed analysis, confidence scoring, or gap table in Part 2
 3. **Consistent rating**: The Overall Recommendation must be consistent with the competency ratings — if most competencies are 👎, the recommendation cannot be "Yes"
 4. **Evidence in every claim**: Every pro, con, and competency explanation must reference specific transcript content or slide data
