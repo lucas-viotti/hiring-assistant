@@ -1,0 +1,10 @@
+name: "docx"
+match:
+  url_patterns: []
+  file_extensions:
+    - ".docx"
+mcp: "native"
+cli: ""
+tools: []
+output: "markdown"
+instructions: ""

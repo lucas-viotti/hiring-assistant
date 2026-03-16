@@ -1,0 +1,10 @@
+name: "google-slides"
+match:
+  url_patterns:
+    - "docs.google.com/presentation"
+  file_extensions: []
+mcp: "google-workspace"
+cli: ""
+tools: ["slides_getText", "slides_getMetadata"]
+output: "markdown + slides"
+instructions: ""

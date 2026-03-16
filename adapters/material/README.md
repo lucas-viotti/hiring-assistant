@@ -59,23 +59,19 @@ instructions: "notion.md"
 
 ---
 
-## Active Readers
+## Included Readers
 
-| Reader | File | Status |
-|--------|------|--------|
-| PDF | `pdf.yaml` | ✅ Active |
+| Reader | Trigger | MCP / Method | File |
+|--------|---------|-------------|------|
+| PDF | `.pdf` | `native` | `pdf.yaml` |
+| PowerPoint | `.pptx` | `native` | `pptx.yaml` |
+| Word | `.docx` | `native` | `docx.yaml` |
+| Excel | `.xlsx` | `native` | `xlsx.yaml` |
+| Jupyter Notebook | `.ipynb` | `native` | `jupyter.yaml` |
+| Google Slides | `docs.google.com/presentation` | `google-workspace` | `google-slides.yaml` |
+| Google Docs | `docs.google.com/document` | `google-workspace` | `google-docs.yaml` |
+| Google Sheets | `docs.google.com/spreadsheets` | `google-workspace` | `google-sheets.yaml` |
+| Miro board | `miro.com/app/board` | `miro-mcp` | `miro.yaml` |
+| Figma | `figma.com/file` | `figma` | `figma.yaml` |
 
-## Planned Readers
-
-| Reader | Trigger | MCP / Method |
-|--------|---------|-------------|
-| Google Slides | `docs.google.com/presentation` | `google-workspace` |
-| Google Docs | `docs.google.com/document` | `google-workspace` |
-| PowerPoint | `.pptx` | `native` |
-| Word | `.docx` | `native` |
-| Google Sheets | `docs.google.com/spreadsheets` | `google-workspace` |
-| Excel | `.xlsx` | `native` |
-| Miro board | `miro.com/app/board` | `miro-mcp` |
-| Figma | `figma.com/file` | `figma` |
-| GitHub repo | `github.com/{org}/{repo}` | `agent` → `code-explorer` |
-| Jupyter Notebook | `.ipynb` | `native` |
+Readers using MCP servers require the corresponding MCP to be configured. The `native` readers work out of the box (Claude reads these formats directly).

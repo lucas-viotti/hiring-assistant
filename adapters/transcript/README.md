@@ -59,18 +59,11 @@ output: "markdown"
 
 ---
 
-## Active Adapters
+## Included Adapters
 
 | Adapter | Method | Status |
 |---------|--------|--------|
 | BrightHire (clipboard) | `clipboard` | ✅ Active |
 | Manual file | `file` | ✅ Active |
 
-## Planned Adapters
-
-| Adapter | Method | Requires |
-|---------|--------|---------|
-| Google Meet (notes/transcript) | `mcp` | `google-workspace` MCP |
-| Zoom (recording export) | `file` | `.vtt` or `.txt` export |
-| Microsoft Teams | `file` | `.docx` export |
-| Granola | `file` | `.md` export |
+The **manual-file** adapter accepts `.md`, `.txt`, `.docx`, and `.vtt` files — covering exports from Zoom, Microsoft Teams, Granola, Otter.ai, and other recording platforms that export transcripts as files.

@@ -1,0 +1,10 @@
+name: "jupyter"
+match:
+  url_patterns: []
+  file_extensions:
+    - ".ipynb"
+mcp: "native"
+cli: ""
+tools: []
+output: "markdown"
+instructions: ""

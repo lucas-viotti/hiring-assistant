@@ -65,16 +65,10 @@ output_mapping:
 
 ---
 
-## Active Adapters
+## Included Adapters
 
 | Adapter | Auth | Scorecard Read | Scorecard Post | Status |
 |---------|------|---------------|----------------|--------|
 | Greenhouse | API key | ✅ (`/v1/applications/{id}/scorecards`) | ❌ (not yet supported) | ✅ Active |
 
-## Planned Adapters
-
-| Adapter | Auth |
-|---------|------|
-| Lever | OAuth |
-| Ashby | API key |
-| Manual (no ATS) | None |
+To add Lever, Ashby, or other ATS platforms, create a new adapter following the schema above.

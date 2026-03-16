@@ -1,0 +1,10 @@
+name: "google-sheets"
+match:
+  url_patterns:
+    - "docs.google.com/spreadsheets"
+  file_extensions: []
+mcp: "google-workspace"
+cli: ""
+tools: ["sheets_getText", "sheets_getRange"]
+output: "markdown"
+instructions: ""

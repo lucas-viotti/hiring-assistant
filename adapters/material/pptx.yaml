@@ -1,0 +1,10 @@
+name: "pptx"
+match:
+  url_patterns: []
+  file_extensions:
+    - ".pptx"
+mcp: "native"
+cli: ""
+tools: []
+output: "markdown + slides"
+instructions: ""

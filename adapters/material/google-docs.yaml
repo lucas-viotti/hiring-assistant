@@ -1,0 +1,10 @@
+name: "google-docs"
+match:
+  url_patterns:
+    - "docs.google.com/document"
+  file_extensions: []
+mcp: "google-workspace"
+cli: ""
+tools: ["docs_getText"]
+output: "markdown"
+instructions: ""

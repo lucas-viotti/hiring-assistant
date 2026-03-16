@@ -1,0 +1,11 @@
+name: "figma"
+match:
+  url_patterns:
+    - "figma.com/file"
+    - "figma.com/design"
+  file_extensions: []
+mcp: "figma"
+cli: ""
+tools: []
+output: "markdown"
+instructions: ""

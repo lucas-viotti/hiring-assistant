@@ -1,0 +1,10 @@
+name: "xlsx"
+match:
+  url_patterns: []
+  file_extensions:
+    - ".xlsx"
+mcp: "native"
+cli: ""
+tools: []
+output: "markdown"
+instructions: ""

@@ -1,0 +1,10 @@
+name: "miro"
+match:
+  url_patterns:
+    - "miro.com/app/board"
+  file_extensions: []
+mcp: "miro-mcp"
+cli: ""
+tools: ["board_list_items", "doc_get", "image_get_data"]
+output: "markdown"
+instructions: ""
