@@ -16,32 +16,51 @@ You never evaluate the candidate. This is a preparation aid only.
 <guideline_load_result>
 {output from guideline-loader agent}
 </guideline_load_result>
+
+<materials_result>
+{output from material-reader agent, or empty if skipped/unavailable}
+</materials_result>
 ```
 
 ## Steps
 
 ### Step 1: Load candidate background
 
-Check for a Greenhouse profile or CV at:
-`~/.hiring-assistant/candidates/{candidate_name}/`
+**If `materials_result` is present and contains a resume/CV** (behavioral interviews):
+- Use the resume as the primary source for candidate background
+- Extract: current role, company, relevant experience highlights, education, notable work
+- This populates the Candidate Background section of the behavioral template
 
-Look for: `profile.md`, `cv.md`, `cv.pdf`, `resume.md`, or any `.pdf` file.
-
-If found → read it and extract:
+**If `materials_result` is empty or contains a presentation** (not a resume):
+- Check for a Greenhouse profile or CV at:
+  `~/.hiring-assistant/candidates/{candidate_name}/`
+- Look for: `profile.md`, `cv.md`, `cv.pdf`, `resume.md`, or any `.pdf` file.
+- If found → read it and extract:
   - Current role and company
   - Relevant experience highlights
   - Education background (if relevant)
   - Any publicly notable work
-
-If not found → search Gmail for the candidate name with query: `"{candidate_name}" resume OR application OR profile`
-
-If still not found → note "Background: Not available — add `profile.md` to `~/.hiring-assistant/candidates/{candidate_name}/` to populate this section."
+- If not found → search Gmail for the candidate name with query: `"{candidate_name}" resume OR application OR profile`
+- If still not found → note "Background: Not available — add `profile.md` to `~/.hiring-assistant/candidates/{candidate_name}/` to populate this section."
 
 ### Step 2: Load level bar
 
 From `guideline_load_result.guidelines`, extract the level bar for `routing_result.level` and `routing_result.interview_type`.
 
 This will be used in the Level Bar Reminder section.
+
+### Step 2.5: Material Coverage Analysis (business case only)
+
+Skip this step if `materials_result` is empty or `routing_result.interview_type` is not business case.
+
+1. Load `must-identify insights` from guidelines (critical / important / nice-to-have)
+2. Read through the extracted presentation content page by page
+3. For each must-identify insight, determine:
+   - **Covered** (✅): candidate addressed it — note which slide/page and depth
+   - **Partially covered** (⚠️): mentioned but not quantified or developed — generate a follow-up question
+   - **Not addressed** (❌): gap — generate a targeted probing question
+4. Note candidate's analytical approach: frameworks used, data handling, structure, creative solutions
+5. Identify any candidate insights NOT in the guidelines (bonus observations worth discussing)
 
 ### Step 3: Build competency questions
 
@@ -51,7 +70,13 @@ From the guidelines, extract:
 - What to look for at this level (IC bar)
 - 2–3 suggested probing questions per competency
 
-For business case: also extract must-identify insights from the guidelines and map probing questions to each.
+**Business case with materials**: generate targeted questions based on coverage analysis from Step 2.5 — prioritize gaps first, then shallow areas, then depth probes on covered topics.
+
+**Business case without materials**: fall back to generic questions from guidelines only. Also extract must-identify insights from the guidelines and map probing questions to each.
+
+**Behavioral with resume**: tailor situational questions to the candidate's background (e.g., if they led migrations, probe that for ownership evidence; if they managed cross-functional teams, use that as a STAR prompt).
+
+**Behavioral without resume**: fall back to generic questions from guidelines only.
 
 ### Step 4: Identify red flags to watch
 
@@ -83,5 +108,6 @@ If user says Yes → write the file.
 | Situation | Action |
 |-----------|--------|
 | No candidate background found | Include "Background: Not available" section; continue with remaining sections |
+| Materials empty/skipped | For business case: skip Material Analysis section, use generic guidelines-only questions. For behavioral: use existing fallback chain for background |
 | Guidelines not loaded | Note which sections are incomplete; still generate competency structure from function config |
 | Unknown interview type | Fall back to behavioral structure |

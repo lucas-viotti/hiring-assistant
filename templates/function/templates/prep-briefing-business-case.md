@@ -37,6 +37,40 @@
 
 ---
 
+## Material Analysis
+
+<!-- instructions: Cross-reference the candidate's materials against the
+     guidelines' must-identify insights. Show coverage per insight and
+     generate targeted probing questions for gaps. Skip this entire section
+     if no materials were provided (materials_result is empty). -->
+
+### Coverage vs. Guidelines
+
+| Must-Identify Insight | Importance | Covered? | Where | Probing Question |
+|-----------------------|-----------|----------|-------|------------------|
+| {insight} | Critical | ✅ Slide 5 | Quantified with data | — |
+| {insight} | Critical | ⚠️ Partial (slide 8) | Mentioned, not quantified | "How did you size the impact of...?" |
+| {insight} | Important | ❌ Not addressed | — | "What about the impact on...?" |
+
+### Candidate's Analytical Approach
+
+<!-- instructions: Summarize the candidate's approach — frameworks, data
+     handling, structure, notable choices. Helps the interviewer know
+     what to expect and where to probe deeper. -->
+
+{Summary}
+
+### Suggested Q&A Strategy
+
+<!-- instructions: Ordered Q&A plan. Start with critical gaps, then probe
+     depth on partial coverage, then nice-to-haves if time allows. -->
+
+1. **Start with**: {most critical gap} — "..."
+2. **Then probe**: {partial coverage area} — "..."
+3. **If time**: {nice-to-have} — "..."
+
+---
+
 ## Competencies to Assess During Q&A
 
 <!-- instructions: List competencies to probe during the discussion phase. -->

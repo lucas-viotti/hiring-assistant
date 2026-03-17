@@ -8,9 +8,25 @@
 
 ---
 
+## Candidate Background
+
+<!-- instructions: Populated from the candidate's resume/CV if available
+     (via materials_result from Step 2b). Extract current role, company,
+     relevant experience, education, and notable work. If no resume was
+     provided, note "Background: Not available". -->
+
+- **Current role**: {role} at {company}
+- **Relevant experience**: {highlights relevant to this function}
+- **Education**: {if relevant}
+- **Notable**: {any publicly notable work or specific experience to probe}
+
+---
+
 ## Candidate Overview
 
-<!-- instructions: 2-3 sentences from resume/LinkedIn summary if available. Otherwise "No pre-interview materials available." -->
+<!-- instructions: 2-3 sentence narrative summary synthesized from the
+     Candidate Background above. If no background available, write
+     "No pre-interview materials available." -->
 
 {Summary of candidate background}
 
