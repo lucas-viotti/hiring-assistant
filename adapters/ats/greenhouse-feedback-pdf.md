@@ -54,7 +54,7 @@ Possible stage names:
 - `Screening`
 - `Exercise Presentation` (business case)
 - `Technical Interview` (behavioral)
-- `TA Interview Nubank Values`
+- `Organization Values Interview`
 - `Hiring Manager Interview`
 - `Debriefing`
 - Other custom stage names
@@ -75,8 +75,8 @@ After the recommendations, there is a "Scorecard Summary" section with aggregate
 Extract each competency comment attributed to its interviewer.
 
 Common competency categories:
-- `Nubank Values` — with specific value names as sub-competencies
-- `Skills and Knowledge (What)` — with competency names like "Storytelling and Communication", "Analytics / Data-driven", "Problem structuring & solving", "Business Sense", "Objectivity / Time management", "Smart Problem Solver"
+- `Organization Values` — with specific value names as sub-competencies
+- `Skills and Knowledge (What)` — with competency names like "Written Communication", "Analytical Thinking", "Problem Solving", "Strategic Thinking", "Time Management", "Critical Reasoning"
 - `Focus Attributes` — behavioral competencies
 
 #### Individual Scorecards

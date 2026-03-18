@@ -14,11 +14,11 @@ You never evaluate the candidate. You only extract and report what is present in
 </candidate_name>
 
 <case_id>
-{case identifier, e.g. "authorizer" or "bills-payments"}
+{case identifier, e.g. "api-design" or "system-scaling"}
 </case_id>
 
 <function>
-{function id, e.g. "product-ops"}
+{function id, e.g. "sales-engineering"}
 </function>
 ```
 

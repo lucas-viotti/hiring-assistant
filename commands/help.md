@@ -88,7 +88,7 @@ Show:
 
 ```
 Cohort data:
-  product-ops / behavioral — {N} assessments logged
+  sales-engineering / behavioral — {N} assessments logged
   (no data yet)             — if file missing
 ```
 

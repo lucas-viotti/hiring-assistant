@@ -12,8 +12,8 @@ This schema is enforced by `guideline-loader` before any evaluation, and by `/hi
 # ─────────────────────────────────────────
 # Function identity
 # ─────────────────────────────────────────
-function: ""                      # Unique identifier, lowercase-hyphenated (e.g., "product-ops")
-name: ""                          # Display name (e.g., "Product Operations")
+function: ""                      # Unique identifier, lowercase-hyphenated (e.g., "sales-engineering")
+name: ""                          # Display name (e.g., "Sales Engineering")
 status: "active"                  # "active" | "draft" — only active functions can be evaluated
 guidelines_repo: ""               # Org's private guidelines repo name (e.g., "hiring-guidelines-{function}")
 
@@ -41,10 +41,10 @@ interview_types:
     levels: []
     async: false
     cases:                        # One entry per case variant
-      - id: ""                    # e.g., "authorizer"
-        name: ""                  # e.g., "Credit Card Authorization"
+      - id: ""                    # e.g., "api-design"
+        name: ""                  # e.g., "API Design Challenge"
         active: true              # Only active cases are offered in /hiring-evaluate
-        guidelines_path: ""       # Relative path in guidelines repo (e.g., "business-case/authorizer/")
+        guidelines_path: ""       # Relative path in guidelines repo (e.g., "business-case/api-design/")
         candidate_materials: []   # Filenames of materials given to the candidate
     required_inputs: []
     optional_inputs: []
@@ -91,13 +91,13 @@ Manager-track levels (M2, M3) use the same evaluation bar as their IC equivalent
 
 ---
 
-## Example: Product Operations
+## Example: Sales Engineering
 
 ```yaml
-function: "product-ops"
-name: "Product Operations"
+function: "sales-engineering"
+name: "Sales Engineering"
 status: "active"
-guidelines_repo: "hiring-guidelines-product-ops"
+guidelines_repo: "hiring-guidelines-sales-engineering"
 
 interview_types:
   - id: "behavioral"
@@ -111,22 +111,22 @@ interview_types:
       - type: notes
         formats: [md, txt]
     competencies:
-      - id: stakeholder-management
-        name: Stakeholder Management
-      - id: continuous-improvement
-        name: Continuous Improvement
-      - id: achievements
-        name: Achievements
+      - id: problem-solving
+        name: Problem Solving
       - id: communication
         name: Communication
-      - id: english-level
-        name: English Level
-      - id: fast-learner
-        name: Fast Learner
+      - id: analytical-thinking
+        name: Analytical Thinking
+      - id: collaboration
+        name: Collaboration
+      - id: adaptability
+        name: Adaptability
       - id: ownership
         name: Ownership
-      - id: smart-problem-solver
-        name: Smart Problem Solver
+      - id: customer-focus
+        name: Customer Focus
+      - id: technical-aptitude
+        name: Technical Aptitude
       - id: result-oriented
         name: Result Oriented
     guidelines_path: "behavioral/"
@@ -136,15 +136,15 @@ interview_types:
     levels: [IC4, IC5, IC6, M2, IC7, M3]
     async: true
     cases:
-      - id: "authorizer"
-        name: "Credit Card Authorization"
+      - id: "api-design"
+        name: "API Design Challenge"
         active: true
-        guidelines_path: "business-case/authorizer/"
+        guidelines_path: "business-case/api-design/"
         candidate_materials: []
-      - id: "bills-payments"
-        name: "Bills & Payments"
+      - id: "system-scaling"
+        name: "System Scaling Challenge"
         active: true
-        guidelines_path: "business-case/bills-payments/"
+        guidelines_path: "business-case/system-scaling/"
         candidate_materials: []
     required_inputs:
       - type: presentation
@@ -165,10 +165,10 @@ interview_types:
         name: Business Sense
       - id: communication
         name: Communication
-      - id: stakeholder-management
-        name: Stakeholder Management
+      - id: strategic-thinking
+        name: Strategic Thinking
     guidelines_path: "business-case/"
 
 greenhouse:
-  scorecard_prefix: "product-ops"
+  scorecard_prefix: "sales-engineering"
 ```

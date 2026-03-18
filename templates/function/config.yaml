@@ -5,8 +5,8 @@
 # ─────────────────────────────────────────
 # Function identity
 # ─────────────────────────────────────────
-function: "{function-id}"                 # e.g., "product-ops" — lowercase, hyphenated
-name: "{Function Display Name}"           # e.g., "Product Operations"
+function: "{function-id}"                 # e.g., "sales-engineering" — lowercase, hyphenated
+name: "{Function Display Name}"           # e.g., "Sales Engineering"
 status: "draft"                           # Change to "active" when setup is complete
 guidelines_repo: "hiring-guidelines-{function-id}"  # Your org's private guidelines repo name
 

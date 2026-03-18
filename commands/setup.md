@@ -58,7 +58,7 @@ maxResults: 50
 ```
 
 Parse event titles to detect function keywords:
-- "Product Ops", "Product Operations", "PO" → `product-ops`
+- "Sales Engineering", "SE", "Sales Eng" → `sales-engineering`
 - "Business Case", "BCO", "Business Consulting" → `bco`
 - "PM", "Product Manager", "Product Management" → `product-manager`
 - "Design", "UX", "Product Designer" → `design`
@@ -66,7 +66,7 @@ Parse event titles to detect function keywords:
 Show detected functions:
 ```
 Detected from your calendar:
-  ✓ product-ops (found {N} interviews in the past 30 days)
+  ✓ sales-engineering (found {N} interviews in the past 30 days)
 
 Additional functions available: (configure manually later with /hiring-admin)
 ```
@@ -108,7 +108,7 @@ the config later at ~/.hiring-assistant/functions/{function}/config.yaml
 
 **Q1 — Display name:**
 ```
-Function display name (e.g. "Product Operations"):
+Function display name (e.g. "Sales Engineering"):
 ```
 
 **Q2 — Interview types:**
@@ -141,7 +141,7 @@ Competency 2:
 **Q5 — Cases (business case):** *(only if business case selected)*
 ```
 What is the name of the current business case?
-(e.g. "Strategic Analysis", "Bills & Payments")
+(e.g. "Strategic Analysis", "System Scaling")
 
 Case name:
 ```
@@ -266,7 +266,7 @@ If org-config present and `guidelines.repo_pattern` is set:
 Show access status:
 ```
 Guidelines access:
-  ✓ product-ops — repo accessible
+  ✓ sales-engineering — repo accessible
   ✗ bco — repo not found or no access
 ```
 
@@ -280,7 +280,7 @@ For each function where the repo is accessible:
 
 2. Show:
    ```
-   ✓ product-ops guidelines cloned to ~/.hiring-assistant/guidelines/product-ops/
+   ✓ sales-engineering guidelines cloned to ~/.hiring-assistant/guidelines/sales-engineering/
    ```
 
 For any function with missing access, show the request instructions from org-config:
@@ -468,7 +468,7 @@ user:
   name: "{display_name}"
   email: "{email}"
 
-functions: {detected_functions}   # e.g., [product-ops]
+functions: {detected_functions}   # e.g., [sales-engineering]
 
 transcript:
   default_adapter: "{transcript_adapter}"   # e.g., brighthire-clipboard

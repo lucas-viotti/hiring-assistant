@@ -111,7 +111,7 @@ For each function with a guidelines repo configured:
 - Show pull output
 
 ```
-Syncing guidelines for product-ops...
+Syncing guidelines for sales-engineering...
   Already up to date.  (or: N commits pulled)
 
 Sync complete.
@@ -119,7 +119,7 @@ Sync complete.
 
 If a guidelines directory is not a git repo:
 ```
-⚠️ ~/.hiring-assistant/guidelines/product-ops/ is not a git repository.
+⚠️ ~/.hiring-assistant/guidelines/sales-engineering/ is not a git repository.
 Re-run /hiring-setup to reconfigure guidelines access.
 ```
 
