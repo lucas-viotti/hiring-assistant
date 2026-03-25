@@ -1,6 +1,6 @@
 ---
 name: hiring-admin
-description: Admin tools for function owners — validate plugin structure, run golden-set backtests, scan candidate files for retention expiry, and sync guidelines repos.
+description: Admin tools for function owners — validate plugin structure, scan candidate files for retention expiry, sync guidelines repos, and bootstrap new functions.
 triggers:
   - /hiring-admin
 ---

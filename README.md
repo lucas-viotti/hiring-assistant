@@ -21,7 +21,7 @@ After each interview, run `/hiring-evaluate` and get a complete assessment in mi
 | `/hiring-evaluate` | Post-interview assessment generation |
 | `/hiring-prepare` | Pre-interview briefing from candidate materials |
 | `/hiring-debrief` | Debrief prep for interviewers (`--mode interviewer`) and bar raisers (`--mode bar-raiser`) |
-| `/hiring-admin` | Function setup, validation, sync, backtest |
+| `/hiring-admin` | Function setup, validation, sync, new-function wizard |
 | `/hiring-help` | Show commands, config status, upcoming interviews |
 
 ---

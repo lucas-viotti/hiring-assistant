@@ -120,7 +120,7 @@ Show:
   --mode interviewer  Prepare your talking points from your own assessments
   --mode bar-raiser   Load all scorecards, build cross-interviewer comparison
   --verdict           Record consolidated verdict after the debrief meeting
-/hiring-admin      — Add functions, run backtests, validate plugin
+/hiring-admin      — Add functions, validate plugin, sync guidelines
 ```
 
 ---

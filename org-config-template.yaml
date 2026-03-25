@@ -15,17 +15,17 @@ organization:
         add_to_org: "I would like to add {username} to the {org} GitHub organization."
         add_to_group: "I would like to access the {group_name} GitHub team/repository."
 
-  functions:
-    source: "repo"             # "repo" | "bundled-with-guidelines"
-    repo: ""                   # GitHub repo name containing function configs (if source: "repo")
-    path: "functions/"         # Path within the repo
-    available: []              # Optional explicit list of function IDs; if empty, all active functions are offered
+  content:
+    repo: ""                   # GitHub repo name with org configs, templates, and docs (Tier 2)
+                               # Contains: org-config.yaml, functions/{function-id}/config.yaml, templates/, docs/
+                               # Setup clones this repo and overlays files into ~/.hiring-assistant/
 
   guidelines:
+    repo_pattern: "hiring-guidelines-{function}"  # Per-function private repos (Tier 3)
     contact: ""                # Who to contact for guidelines access (e.g., "@hiring-lead")
     contact_method: "slack"    # "slack" | "email" | "jira"
-    repo_pattern: "hiring-guidelines-{function}"  # Pattern for private guidelines repos
     message_template: "Hi {contact}, I need access to the {function} hiring guidelines. My GitHub username is {username}."
+    manual_fallback: true      # Allow users to paste guidelines files if they lack repo access
 
   integrations:
     ats:

@@ -198,9 +198,9 @@ If status is "draft":
 
 ---
 
-## Step 3 — Validate GitHub + Guidelines Access
+## Step 3 — Clone Org Config + Acquire Guidelines
 
-### Step 3a — Check GitHub CLI
+### Pre-check — GitHub CLI
 
 Run:
 ```bash
@@ -212,12 +212,12 @@ If command is not found:
 ```
 GitHub CLI (gh) is not installed or not in your PATH.
 
-Guidelines are stored in private GitHub repositories. To access them you'll need:
+Org configs and guidelines are stored in private GitHub repositories. To access them you'll need:
   1. Install GitHub CLI: https://cli.github.com/
   2. Authenticate: gh auth login
   3. Request org access from your IT/security team if prompted
 
-Proceeding without guidelines access for now.
+Proceeding without org config or guidelines for now.
 You can re-run /hiring-setup after installing gh.
 ```
 Set `github_available = false`. Continue to Step 4.
@@ -230,9 +230,9 @@ GitHub CLI is installed but not authenticated.
 To authenticate:
   gh auth login
 
-Then re-run /hiring-setup to validate guidelines access.
+Then re-run /hiring-setup to pull org configs and guidelines.
 
-Proceeding without guidelines access for now.
+Proceeding without org config or guidelines for now.
 ```
 Set `github_available = false`. Continue to Step 4.
 
@@ -247,55 +247,150 @@ To request org access:
   3. If your org uses SSO, you may need to authorize your token after joining:
      gh auth refresh -h github.com -s read:org
 
-Proceeding without guidelines access for now.
+Proceeding without org config or guidelines for now.
 ```
 Set `github_available = false`. Continue to Step 4.
 
-**Case D — gh authenticated and org accessible:** Continue to Step 3b.
+**Case D — gh authenticated and org accessible:** Continue to Step 3a.
 
-### Step 3b — Check Guidelines Repo Access
+### Step 3a — Clone Org Config (Tier 2)
 
-Read `~/.hiring-assistant/org-config.yaml` if present.
+Resolve the org config repo:
+- If `~/.hiring-assistant/org-config.yaml` exists and has `content.repo`: use that value
+- Otherwise: try `{org}/hiring-assistant` as the default convention
 
-If org-config present and `guidelines.repo_pattern` is set:
-- Pattern: `{guidelines.repo_pattern}` (e.g., `hiring-guidelines-{function}`)
-- For each function in `detected_functions`:
-  - Resolved repo: `{org}/{pattern with function substituted}`
-  - Run: `gh api repos/{org}/{resolved-repo-name} --silent 2>&1`
-
-Show access status:
-```
-Guidelines access:
-  ✓ sales-engineering — repo accessible
-  ✗ bco — repo not found or no access
+Run:
+```bash
+gh api repos/{org}/{content_repo} --silent 2>&1
 ```
 
-### Step 3c — Clone accessible guidelines
+**If repo is accessible:**
 
-For each function where the repo is accessible:
-
-1. Check if `~/.hiring-assistant/guidelines/{function}/` already exists and is a git repo
-   - If yes: run `git -C ~/.hiring-assistant/guidelines/{function}/ pull`
-   - If no: run `git clone {org}/{resolved-repo-name} ~/.hiring-assistant/guidelines/{function}/`
-
-2. Show:
-   ```
-   ✓ sales-engineering guidelines cloned to ~/.hiring-assistant/guidelines/sales-engineering/
+1. Clone to a temp directory:
+   ```bash
+   temp_dir=$(mktemp -d)
+   gh repo clone {org}/{content_repo} "$temp_dir" -- --depth 1
    ```
 
-For any function with missing access, show the request instructions from org-config:
+2. Copy org-config.yaml (if not already present locally, or if user confirms overwrite):
+   ```
+   if ~/.hiring-assistant/org-config.yaml exists:
+     "Org config already exists locally. Overwrite with repo version? [Yes / No]"
+   else:
+     copy $temp_dir/org-config.yaml → ~/.hiring-assistant/org-config.yaml
+   ```
+
+3. Merge function configs and assets — for each function directory in `$temp_dir/functions/`:
+   ```
+   For each file in $temp_dir/functions/{function}/:
+     target = ~/.hiring-assistant/functions/{function}/{relative_path}
+     if target exists:
+       skip (preserve local customizations)
+     else:
+       copy file to target
+   ```
+
+   Show:
+   ```
+   Org config synced from {org}/{content_repo}:
+     ✓ org-config.yaml — {copied | already exists, skipped}
+     ✓ functions/product-ops/config.yaml — {copied | already exists, skipped}
+     ✓ functions/product-ops/templates/ — {N} files copied, {M} skipped (already exist)
+     ✓ functions/product-ops/docs/ — {N} files copied
+   ```
+
+4. Clean up temp clone:
+   ```bash
+   rm -rf "$temp_dir"
+   ```
+
+**If repo is NOT accessible:**
 ```
-To request access for {function}:
-  {org_config.guidelines.message_template (filled in)}
-  Contact: {org_config.guidelines.contact} via {org_config.guidelines.contact_method}
+Org config repo ({org}/{content_repo}) is not accessible.
+
+This repo contains function configs, templates, and docs shared across your org.
+To request access, contact your hiring lead or run:
+  {access_request instructions from org-config or defaults}
+
+You can still configure functions manually in Step 2b above.
 ```
 
-Ask:
-```
-Proceed without guidelines for inaccessible functions? [Yes / No]
-```
+### Step 3b — Acquire Guidelines (Tier 3)
 
-If No: Stop. Re-run after requesting access.
+Read `guidelines.repo_pattern` from `~/.hiring-assistant/org-config.yaml` (e.g., `hiring-guidelines-{function}`).
+Read `guidelines.manual_fallback` (default: `true`).
+
+For each function in `detected_functions`:
+
+1. Resolve repo name: `{org}/{repo_pattern with {function} substituted}`
+   - Map function ID to guidelines repo name using the pattern
+   - If the function's config has a `guidelines_repo` field with a custom name, use that instead of the pattern
+   - If the function's `config.yaml` has a `guidelines_repo` field, use that directly instead of the pattern
+
+2. Check access:
+   ```bash
+   gh api repos/{org}/{resolved_guidelines_repo} --silent 2>&1
+   ```
+
+3. **If accessible:**
+   - Check if `~/.hiring-assistant/guidelines/{function}/` already exists and is a git repo
+     - If yes: `git -C ~/.hiring-assistant/guidelines/{function}/ pull`
+     - If no: `git clone {org}/{resolved_guidelines_repo} ~/.hiring-assistant/guidelines/{function}/`
+   - Show:
+     ```
+     ✓ {function} guidelines — cloned to ~/.hiring-assistant/guidelines/{function}/
+     ```
+
+4. **If NOT accessible:**
+   - Show access request instructions:
+     ```
+     ✗ {function} guidelines — repo not accessible ({org}/{resolved_guidelines_repo})
+
+     Guidelines contain the evaluation criteria for this function.
+     They are stored in a restricted repo to protect interview integrity.
+     ```
+
+   - If org-config has `access_request.method` = "slack-bot":
+     ```
+     To request access, send this message to {bot_name}:
+       "{access_request.prompts.add_to_group}" (filled with repo name)
+
+     Or contact {guidelines.contact} via {guidelines.contact_method}.
+     ```
+
+   - If `guidelines.manual_fallback` is true:
+     ```
+     Alternatively, you can paste guidelines files manually.
+     Would you like to:
+       [1] Paste guidelines files now
+       [2] Request access and come back later — run /hiring-admin sync after approval
+
+     ```
+
+     If user selects [1] (paste):
+     ```
+     Please provide the path to your guidelines file(s).
+     These will be copied to ~/.hiring-assistant/guidelines/{function}/
+
+     File or directory path:
+     ```
+     - Copy provided file(s) to `~/.hiring-assistant/guidelines/{function}/`
+     - Show: `✓ Guidelines copied to ~/.hiring-assistant/guidelines/{function}/`
+
+     If user selects [2]:
+     ```
+     No problem. You're set up for everything except guidelines-dependent evaluation.
+     Once access is approved, run:
+       /hiring-admin sync
+     to pull the guidelines automatically.
+     ```
+
+Show final summary:
+```
+Guidelines status:
+  ✓ product-ops — cloned
+  ⏳ bco — access pending (run /hiring-admin sync after approval)
+```
 
 ---
 
